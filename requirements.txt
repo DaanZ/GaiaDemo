@@ -1,0 +1,9 @@
+streamlit
+python_dotenv
+pydantic
+rootpath
+langchain_openai
+langchain_community
+langchain_core
+langchain
+openai
