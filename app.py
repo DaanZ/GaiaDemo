@@ -8,7 +8,7 @@ if "company_data" not in st.session_state:
     st.session_state["company_data"] = {}
 
 # Title
-st.title("Meeting Transcript Analyzer")
+st.title("Gaia Hubspot Demo: Meeting Transcript Analyzer")
 
 # Multiline input for meeting transcript
 meeting_transcript = st.text_area("Enter the meeting transcript here:", height=200)
