@@ -122,13 +122,13 @@ def extract_case_studies(company_data, meeting_summary: MeetingSummary):
     new_db = FAISS.from_documents(get_pages(path), OpenAIEmbeddings())
 
     for index, document in enumerate(new_db.similarity_search(meeting_summary.summary, k=2)):
-        if f"gaia_sql1_case_study_{index}" in company_data:
+        if f"gaia_sql1_case_study_{index+1}" in company_data:
             continue
         history = History()
         history.system("Meeting Summary: " + meeting_summary.summary)
         history.system("Case Study: " + document.page_content)
         suggestion = llm_strict(history, base_model=CaseStudySuggestion)
-        company_data[f"gaia_sql1_case_study_{index}"] = suggestion.description
+        company_data[f"gaia_sql1_case_study_{index+1}"] = suggestion.description
 
     return company_data
 
@@ -142,14 +142,14 @@ def extract_article_suggestions(company_data, meeting_summary: MeetingSummary):
     new_db = FAISS.from_documents(get_pages(path), OpenAIEmbeddings())
 
     for index, document in enumerate(new_db.similarity_search(meeting_summary.summary, k=2)):
-        if f"gaia_sql1_article_title_{index}" in company_data and f"gaia_sql1_article_description_{index}" in company_data:
+        if f"gaia_sql1_article_title_{index+1}" in company_data and f"gaia_sql1_article_description_{index}" in company_data:
             continue
         history = History()
         history.system("Meeting Summary: " + meeting_summary.summary)
         history.system("Article: " + document.page_content)
         suggestion: ArticleSuggestion = llm_strict(history, base_model=ArticleSuggestion)
-        company_data[f"gaia_sql1_article_title_{index}"] = suggestion.title
-        company_data[f"gaia_sql1_article_description_{index}"] = suggestion.description
+        company_data[f"gaia_sql1_article_title_{index+1}"] = suggestion.title
+        company_data[f"gaia_sql1_article_description_{index+1}"] = suggestion.description
 
     return company_data
 

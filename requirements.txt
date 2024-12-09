@@ -7,3 +7,4 @@ langchain_community
 langchain_core
 langchain
 openai
+faiss-cpu
