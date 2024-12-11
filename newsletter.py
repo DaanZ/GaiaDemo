@@ -33,7 +33,7 @@ def find_closest_newsletter(company_data):
 
 if __name__ == "__main__":
 
-    st.title("Newsletter Generator")
+    st.title("Gaia Newsletter Demo: Personalized Newsletter based on Slack links")
 
     # Text box to input customer information
     customer_info = st.text_area("Enter customer information:", height=300)
